@@ -17,9 +17,10 @@ struct RouteHeaderView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(originCity) → \(destinationCity)")
                     .font(.headline)
+                    .foregroundStyle(.white)
                 Text("\(dateLabel) · 1 Adult · One Way")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.white.opacity(0.7))
             }
 
             Spacer()
@@ -27,7 +28,7 @@ struct RouteHeaderView: View {
             // Present, tappable, decorative — there's no edit flow in scope.
             Button(action: onTapEdit) {
                 Image(systemName: "pencil")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.white.opacity(0.7))
             }
         }
         .padding()

@@ -25,7 +25,7 @@ struct FlightCardSkeletonView: View {
         }
         .foregroundStyle(Color(.systemGray5))
         .padding()
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color(.secondarySystemBackground)))
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color.white))
         .shimmer()
     }
 }

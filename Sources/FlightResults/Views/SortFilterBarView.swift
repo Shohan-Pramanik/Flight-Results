@@ -12,26 +12,27 @@ struct SortFilterBarView: View {
                 Button("Cheapest") { onSelectSort(.cheapest) }
                 Button("Fastest") { onSelectSort(.fastest) }
             } label: {
-                pill(label: "Cheapest", systemImage: "chevron.down")
+                pill(label: "Cheapest", systemImage: "chevron.down", background: .white)
             }
 
             Spacer()
 
             Button(action: onTapFilter) {
-                pill(label: "Filter", systemImage: "line.3.horizontal.decrease")
+                pill(label: "Filter", systemImage: "line.3.horizontal.decrease", background: .orange)
             }
         }
     }
 
-    private func pill(label: String, systemImage: String) -> some View {
+    private func pill(label: String, systemImage: String, background: Color) -> some View {
         HStack(spacing: 4) {
             Text(label)
             Image(systemName: systemImage)
         }
         .font(.footnote)
         .fontWeight(.medium)
+        .foregroundStyle(Color.accentColor)
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
-        .background(Capsule().fill(Color(.systemGray6)))
+        .background(Capsule().fill(background))
     }
 }

@@ -13,7 +13,7 @@ struct FlightCardView: View {
             priceRow
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color(.secondarySystemBackground)))
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color.white))
     }
 
     private var header: some View {

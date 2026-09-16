@@ -53,7 +53,7 @@ struct DiscountCarouselView: View {
             .padding(4)
         }
         .frame(width: 200, alignment: .leading)
-        .background(RoundedRectangle(cornerRadius: 8).fill(Color("#E5FFEC")))
-        .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(Color("#E5FFEC"), lineWidth: 1))
+        .background(RoundedRectangle(cornerRadius: 8).fill(Color("DiscountCardMint")))
+        .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(Color("DiscountCardMint"), lineWidth: 1))
     }
 }

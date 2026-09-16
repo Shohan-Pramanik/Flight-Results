@@ -23,26 +23,20 @@ struct DatePriceStripView: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
+            HStack(spacing: 20) {
                 ForEach(Array(chips.enumerated()), id: \.element.id) { index, chip in
                     VStack(spacing: 4) {
                         Text(chip.dateLabel)
                             .font(.caption)
                             .fontWeight(.semibold)
+                            .foregroundStyle(index == selectedIndex ? .orange : .white)
                         Text(chip.priceLabel)
                             .font(.caption2)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.white.opacity(0.7))
+                        Rectangle()
+                            .fill(index == selectedIndex ? Color.orange : Color.clear)
+                            .frame(height: 2)
                     }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(index == selectedIndex ? Color.accentColor.opacity(0.15) : Color(.systemGray6))
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(index == selectedIndex ? Color.accentColor : .clear, lineWidth: 1)
-                    )
                     .onTapGesture {
                         // No-op: taps are ignored per the spec.
                     }
