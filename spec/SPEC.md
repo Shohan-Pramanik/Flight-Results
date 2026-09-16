@@ -4,6 +4,7 @@
 **Screen:** Flight Results (single screen, four states)
 **Architecture:** MVVM + Coordinator
 **UI Framework:** SwiftUI
+**Minimum iOS:** 16.0
 **Author:** Shohan Pramanik
 **Status:** Written before prompting the AI (Option A)
 
@@ -71,7 +72,7 @@ laid out and avoids the whole screen jumping around when the state changes.
 
 ### 3.2 Date and price strip
 - Horizontally scrollable row of day chips, each showing a short date
-  (`Sun 08 Feb`) and a fare underneath (`USD 2,129`)
+  (`Wed 30 Sept`) and a fare underneath (`USD 2,129`)
 - One chip is visually selected/highlighted
 - Entirely **dummy, hardcoded data** — 7 chips is enough to prove it
   scrolls
@@ -274,10 +275,7 @@ Fields present in the real payload but not needed anywhere in the UI —
 `airplane`, `legroom`, `extensions`, `carbon_emissions`,
 `ticket_also_sold_by`, `often_delayed_by_over_30_min`, `booking_token`,
 `price_insights`, `airports` — are simply left out of these structs.
-`airline_logo` was originally on that list too, until the reference
-screenshot made it clear the card shows a real airline logo image, not a
-generic icon — so it's kept and mapped through. `Codable` only decodes
-keys you declare, so omitting the rest is a safe, deliberate choice rather
+`Codable` only decodes keys you declare, so omitting the rest is a safe, deliberate choice rather
 than something that will crash on unexpected fields.
 
 ### 4.3 Domain model — what the UI actually binds to
@@ -379,14 +377,14 @@ mattering anyway.
 
 - **ViewModel** (`FlightResultsViewModel`) — owns a published state:
 
-  ```swift
+```swift
   enum FlightResultsState {
       case loading
       case success([FlightOffer])
       case empty
       case error(String)
   }
-  ```
+```
 
   It calls the network service, maps the raw response into `[FlightOffer]`
   using §4.4/§4.5, and publishes the resulting state. It does **not**
@@ -397,12 +395,12 @@ mattering anyway.
 - **Coordinator delegate** — the ViewModel reports outward through this,
   never by calling navigation methods directly:
 
-  ```swift
+```swift
   protocol FlightResultsCoordinatorDelegate: AnyObject {
       func didSelectFlight(_ offer: FlightOffer)
       func didTapLearnMore(url: URL)
   }
-  ```
+```
 
   The brief's own example only shows `didSelectFlight`. I've added
   `didTapLearnMore(url:)` because the one actual required navigation in
@@ -414,33 +412,57 @@ mattering anyway.
   place and correctly routed through the Coordinator rather than handled
   inside the ViewModel or View.
 
-- **Coordinator** (`FlightResultsCoordinator`) — in SwiftUI there's no
-  `UINavigationController` to push onto, so the Coordinator is implemented
-  as its own `ObservableObject` that owns navigation/presentation *state*,
-  and the View reads that state to decide what to show. It creates the
-  `FlightResultsViewModel`, sets itself as `FlightResultsCoordinatorDelegate`,
-  and exposes the root `View` for this screen:
+- **Coordinator** (`FlightResultsCoordinator`) — owns a `NavigationPath` and
+  wraps this screen in a `NavigationStack`, so "Learn more" is a genuine
+  *push*, not a modal. Both `NavigationStack` and `NavigationPath` need
+  iOS 16.0 — fine here since that's the stated minimum deployment target
+  (see header above), but worth flagging: on an iOS 15 floor neither exists, and the fallback would be
+  the older `NavigationView` + a hidden `NavigationLink(destination:isActive:)`
+  bound to Coordinator state, which is a real pattern but noticeably more
+  fragile (the destination view gets built eagerly even when nothing's
+  showing, and `NavigationView` needs `.navigationViewStyle(.stack)` set
+  explicitly or iPad defaults to a split view). (An earlier pass of this
+  had `didTapLearnMore` driving a `.sheet(item:)` instead — that's a
+  legitimate SwiftUI pattern in general, but it's a modal, not navigation,
+  and doesn't sit right alongside a task that specifically calls for
+  MVVM + **Coordinator**. This version fixes that.) The Coordinator
+  creates the `FlightResultsViewModel`, sets itself as
+  `FlightResultsCoordinatorDelegate`, and exposes the root `View` for this
+  screen:
 
-  ```swift
+```swift
+  enum FlightResultsRoute: Hashable {
+      case webLink(URL)
+  }
+
   final class FlightResultsCoordinator: ObservableObject, FlightResultsCoordinatorDelegate {
-      @Published var presentedURL: IdentifiableURL?   // drives a .sheet(item:) in the View
+      @Published var path = NavigationPath()
 
-      private let viewModel: FlightResultsViewModel
+      let viewModel: FlightResultsViewModel
 
       init(viewModel: FlightResultsViewModel) {
           self.viewModel = viewModel
           viewModel.delegate = self
       }
 
+      @ViewBuilder
       func start() -> some View {
-          FlightResultsView(viewModel: viewModel)
-              .environmentObject(self)
+          NavigationStack(path: $path) {
+              FlightResultsView(viewModel: viewModel)
+                  .navigationDestination(for: FlightResultsRoute.self) { route in
+                      switch route {
+                      case .webLink(let url):
+                          WebLinkView(url: url)
+                      }
+                  }
+          }
+          .environmentObject(self)
       }
 
       // MARK: FlightResultsCoordinatorDelegate
 
       func didTapLearnMore(url: URL) {
-          presentedURL = IdentifiableURL(url: url)
+          path.append(FlightResultsRoute.webLink(url))
       }
 
       func didSelectFlight(_ offer: FlightOffer) {
@@ -449,21 +471,22 @@ mattering anyway.
           // handled locally in the View or ViewModel.
       }
   }
-  ```
+```
 
-  `FlightResultsView` gets the Coordinator through `@EnvironmentObject` and
-  attaches `.sheet(item: $coordinator.presentedURL) { SafariView(url: $0.url) }`
-  at its root. `SafariView` is a thin `UIViewControllerRepresentable`
-  wrapper around `SFSafariViewController` — SwiftUI has no native in-app
-  browser, so this is the standard way to open a real web page without
-  leaving the app. `.sheet(item:)` requires `Identifiable`, and `URL`
-  doesn't conform to it, so `presentedURL` is wrapped in a tiny
-  `IdentifiableURL` struct rather than a raw `URL?`.
+  `FlightResultsView` itself doesn't need the Coordinator at all —
+  `viewModel.tapLearnMore(url:)` calls the delegate, the Coordinator
+  appends a route, and `.navigationDestination` (declared once, on the
+  Coordinator's `NavigationStack`) resolves it into a pushed `WebLinkView`.
+  `WebLinkView` wraps a plain `WKWebView`, not `SFSafariViewController` —
+  Safari's view controller is built for modal presentation (its own "Done"
+  button, its own toolbar) and looks wrong pushed onto a stack that already
+  supplies a back button from `NavigationStack`.
 
-  This keeps the same separation the brief asks for: the View never talks
-  to the ViewModel's delegate directly, the ViewModel never touches
-  `URL`-opening or `SFSafariViewController`, and the Coordinator is the
-  only place that knows navigation/presentation exists.
+  This keeps the separation the brief asks for: the View never talks to
+  the ViewModel's delegate directly, the ViewModel never touches `URL`s or
+  navigation types, and the Coordinator is the only place that knows
+  navigation exists — it's just expressed as a real push now, via the
+  `NavigationPath` it owns, instead of presentation state driving a sheet.
 
 **Test for correctness:** `FlightResultsViewModel` must be instantiable
 and testable with zero UIKit and zero Coordinator involved — its
@@ -628,9 +651,10 @@ mocked service — no live network calls in the test target.
 - [ ] "Learn more" opens `gozayaan.com` through
       `FlightResultsCoordinatorDelegate`, not directly from the View or
       ViewModel
-- [ ] The Coordinator is an `ObservableObject`; `FlightResultsView` never
-      imports or references `SFSafariViewController` directly — it only
-      reacts to `coordinator.presentedURL` via `.sheet(item:)`
+- [ ] The Coordinator owns a `NavigationPath`; `FlightResultsView` never
+      imports or references `WKWebView` or navigation types directly — it
+      only calls `viewModel.tapLearnMore(url:)`, which reports through the
+      delegate to the Coordinator, which pushes the route
 - [ ] API key is not hardcoded in source under version control (loaded from
       a local, gitignored config or `.xcconfig`)
 - [ ] Responses are cached locally during development to avoid burning the
