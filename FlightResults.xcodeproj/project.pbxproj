@@ -168,6 +168,7 @@
 				6FFBFBCBBCB32F26775AAD96 /* Fixtures */,
 				8E165AA9162C1C342EC4F21D /* Config */,
 				E23A3EC4EFF06F6C59E043DB /* FlightResults */,
+				1D68EFB370761F7BB226872A /* Assets.xcassets */,
 				4062A8A6A8DA4013D966FC05 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -196,18 +197,25 @@
 		E23A3EC4EFF06F6C59E043DB /* FlightResults */ = {
 			isa = PBXGroup;
 			children = (
-				1D68EFB370761F7BB226872A /* Assets.xcassets */,
-				2358F7024247FE46812EEA9D /* FlightResultsApp.swift */,
+				E76B1672305AF7420010A0A4 /* App */,
+				85CEB2649F7691D63B39726A /* Views */,
+				AE66EA7A94B21B6FDDE80F24 /* ViewModel */,
 				77B4E0A7C71BB73A38EFA0F4 /* Coordinator */,
 				27CDAE636C943120CA42B3D3 /* Mapping */,
 				D4B0944DF53EFED2A5AF7DA5 /* Model */,
 				117B4BBB7CCD924B718C6558 /* Networking */,
 				1C1F6F515103794477D321B5 /* Support */,
-				AE66EA7A94B21B6FDDE80F24 /* ViewModel */,
-				85CEB2649F7691D63B39726A /* Views */,
 			);
 			name = FlightResults;
 			path = Sources/FlightResults;
+			sourceTree = "<group>";
+		};
+		E76B1672305AF7420010A0A4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2358F7024247FE46812EEA9D /* FlightResultsApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
