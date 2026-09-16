@@ -16,6 +16,7 @@
 		1545C12FBDE2F1D598980BFF /* FlightOfferFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B020F3104CFC4572677A7A /* FlightOfferFormatting.swift */; };
 		19AA92F56E5263AF8EE696B4 /* FlightSearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DE7482EC9DC42C39E16DBC /* FlightSearchRequest.swift */; };
 		2E135478EF653786DBAE524E /* FlightCardSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189997A5EB9F60CBB1BB9121 /* FlightCardSkeletonView.swift */; };
+		1365B6A33AB24EDDB7C2AC6D /* FlightSearchLoadingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C90086514B4892B5AAE370 /* FlightSearchLoadingHeaderView.swift */; };
 		42BF5F329646231D5146676B /* FlightResultsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2358F7024247FE46812EEA9D /* FlightResultsApp.swift */; };
 		4910BB972D4B2F8C349CFCA5 /* WebLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490DAC557CB251A058B7E4E9 /* WebLinkView.swift */; };
 		494A21996BCD69C5DB08E594 /* LiveFlightSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DD6B149D4AA3A6ED37ED35 /* LiveFlightSearchService.swift */; };
@@ -49,6 +50,7 @@
 		0C30F67B2CC9918F3299487D /* FlightResultsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightResultsState.swift; sourceTree = "<group>"; };
 		100DBC2F17D7800D8AA8F2C6 /* FlightResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightResultsViewModel.swift; sourceTree = "<group>"; };
 		189997A5EB9F60CBB1BB9121 /* FlightCardSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightCardSkeletonView.swift; sourceTree = "<group>"; };
+		92C90086514B4892B5AAE370 /* FlightSearchLoadingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchLoadingHeaderView.swift; sourceTree = "<group>"; };
 		1D68EFB370761F7BB226872A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2358F7024247FE46812EEA9D /* FlightResultsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightResultsApp.swift; sourceTree = "<group>"; };
 		27DE7482EC9DC42C39E16DBC /* FlightSearchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchRequest.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				189997A5EB9F60CBB1BB9121 /* FlightCardSkeletonView.swift */,
 				AAA45D73968E062AA3C0CAC7 /* FlightCardView.swift */,
 				5E03D6590755B209871704B3 /* FlightResultsView.swift */,
+				92C90086514B4892B5AAE370 /* FlightSearchLoadingHeaderView.swift */,
 				D89E44EDAA2FB18FDC68426E /* ResultRow.swift */,
 				FC9761DE0D18114F9C2D56F0 /* ResultsAreaView.swift */,
 				433013144B49BF4FB58BC038 /* RouteHeaderView.swift */,
@@ -305,6 +308,7 @@
 				8C5A5B542B7D358AB7DE5716 /* FlightResultsState.swift in Sources */,
 				E6D3E53DE21E856ADFB46EB8 /* FlightResultsView.swift in Sources */,
 				CED92DFE1E12C46BADD264A4 /* FlightResultsViewModel.swift in Sources */,
+				1365B6A33AB24EDDB7C2AC6D /* FlightSearchLoadingHeaderView.swift in Sources */,
 				19AA92F56E5263AF8EE696B4 /* FlightSearchRequest.swift in Sources */,
 				1095AE768CCA9B86E63D1A86 /* FlightSearchServicing.swift in Sources */,
 				494A21996BCD69C5DB08E594 /* LiveFlightSearchService.swift in Sources */,

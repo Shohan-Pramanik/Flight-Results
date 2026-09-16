@@ -10,8 +10,16 @@ struct ResultsAreaView: View {
     var body: some View {
         switch state {
         case .loading:
-            LazyVStack(spacing: 12) {
-                ForEach(0..<4, id: \.self) { _ in FlightCardSkeletonView() }
+            VStack(spacing: 20) {
+                FlightSearchLoadingHeaderView()
+                LazyVStack(spacing: 12) {
+                    FlightCardSkeletonView()
+                    FlightCardSkeletonView()
+                    DiscountCarouselView(onLearnMore: onLearnMore)
+                    FlightCardSkeletonView()
+                    FlightCardSkeletonView()
+                    FlightCardSkeletonView()
+                }
             }
         case .success(let offers):
             LazyVStack(spacing: 12) {

@@ -19,8 +19,9 @@ struct SortFilterBarView: View {
                 pill(
                     label: selectedSort.label,
                     systemImage: isSortMenuOpen ? "chevron.up" : "chevron.down",
-                    background: .white,
-                    border: Color.accentColor
+                    background: .clear,
+                    border: .white,
+                    foreground: .white
                 )
             }
             .overlay(alignment: .topLeading) {
@@ -32,7 +33,7 @@ struct SortFilterBarView: View {
             Spacer()
 
             Button(action: onTapFilter) {
-                pill(label: "Filter", systemImage: "slider.horizontal.3", background: Color("SelectedDateGold"), border: nil)
+                pill(label: "Filter", systemImage: "slider.horizontal.3", background: Color("SelectedDateGold"))
             }
         }
         .padding(16)
@@ -70,7 +71,13 @@ struct SortFilterBarView: View {
         }
     }
 
-    private func pill(label: String, systemImage: String, background: Color, border: Color?) -> some View {
+    private func pill(
+        label: String,
+        systemImage: String,
+        background: Color,
+        border: Color? = nil,
+        foreground: Color = Color.accentColor
+    ) -> some View {
         HStack(spacing: 4) {
             Text(label)
                 .font(.custom("Gilroy-Bold", size: 12))
@@ -80,7 +87,7 @@ struct SortFilterBarView: View {
             Image(systemName: systemImage)
                 .font(.system(size: 12, weight: .bold))
         }
-        .foregroundStyle(Color.accentColor)
+        .foregroundStyle(foreground)
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .background(RoundedRectangle(cornerRadius: 8).fill(background))
