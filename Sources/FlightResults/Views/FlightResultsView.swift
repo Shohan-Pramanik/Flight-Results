@@ -13,6 +13,7 @@ struct FlightResultsView: View {
                 onSelectSort: { viewModel.applySort($0) },
                 onTapFilter: {}
             )
+            .zIndex(1)
 
             ScrollView {
                 VStack(spacing: 16) {
@@ -30,5 +31,6 @@ struct FlightResultsView: View {
         .task {
             await viewModel.load()
         }
+        .background(Color.accentColor.ignoresSafeArea())
     }
 }

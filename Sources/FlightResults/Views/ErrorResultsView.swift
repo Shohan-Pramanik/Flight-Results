@@ -8,11 +8,11 @@ struct ErrorResultsView: View {
         VStack(spacing: 12) {
             Image(systemName: "exclamationmark.triangle")
                 .font(.system(size: 40))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.white.opacity(0.7))
             Text(message)
                 .font(.subheadline)
                 .multilineTextAlignment(.center)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.white.opacity(0.7))
             Button("Retry", action: onRetry)
                 .buttonStyle(.borderedProminent)
         }

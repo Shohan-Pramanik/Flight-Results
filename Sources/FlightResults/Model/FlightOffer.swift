@@ -22,4 +22,11 @@ struct FlightOffer: Identifiable, Equatable {
         default: return "\(stops) Stop"
         }
     }
+
+    /// The "arrives N day(s) later" badge, driven by total travel time
+    /// rather than a calendar-date crossing: 24h+ of travel is +1Day,
+    /// 48h+ is +2Days, and so on.
+    var arrivalDayOffset: Int {
+        totalDurationMinutes / (24 * 60)
+    }
 }

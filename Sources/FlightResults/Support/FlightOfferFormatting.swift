@@ -8,12 +8,11 @@ enum FlightOfferFormatting {
         return "\(hours)h \(String(format: "%02d", remainingMinutes))m"
     }
 
-    /// `(37400, "BDT")` -> `"BDT 37,400"`
-    static func price(_ amount: Int, currencyCode: String) -> String {
+    /// `37400` -> `"37,400"`
+    static func amount(_ amount: Int) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.usesGroupingSeparator = true
-        let formatted = formatter.string(from: NSNumber(value: amount)) ?? String(amount)
-        return "\(currencyCode) \(formatted)"
+        return formatter.string(from: NSNumber(value: amount)) ?? String(amount)
     }
 }
