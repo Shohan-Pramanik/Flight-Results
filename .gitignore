@@ -4,3 +4,6 @@ xcuserdata/
 *.xcscmblueprint
 DerivedData/
 .build/
+
+# Never commit real API keys — see Config/Secrets.xcconfig.example
+Config/Secrets.xcconfig

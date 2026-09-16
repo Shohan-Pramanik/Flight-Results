@@ -1,0 +1,6 @@
+// Checked into version control. Defines the build setting with an empty
+// default, then optionally pulls in a real value from a gitignored file
+// that isn't committed — see Secrets.xcconfig.example.
+SERPAPI_API_KEY =
+
+#include? "Secrets.xcconfig"
