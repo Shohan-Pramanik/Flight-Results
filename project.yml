@@ -3,12 +3,22 @@ options:
   bundleIdPrefix: com.shohanpramanik
   deploymentTarget:
     iOS: "16.0"
+configFiles:
+  Debug: Config/Config.xcconfig
+  Release: Config/Config.xcconfig
+fileGroups:
+  - Config
 targets:
   FlightResults:
     type: application
     platform: iOS
     sources:
       - path: Sources/FlightResults
+        excludes:
+          - Info.plist
+      - path: Fixtures
+        type: folder
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.shohanpramanik.FlightResults
@@ -16,15 +26,7 @@ targets:
         TARGETED_DEVICE_FAMILY: "1,2"
         ASSETSCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETSCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
-        INFOPLIST_KEY_UILaunchScreen_Generation: YES
-        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
-        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
-        INFOPLIST_KEY_UISupportedInterfaceOrientations~ipad: >-
-          UIInterfaceOrientationPortrait
-          UIInterfaceOrientationPortraitUpsideDown
-          UIInterfaceOrientationLandscapeLeft
-          UIInterfaceOrientationLandscapeRight
-        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_FILE: Sources/FlightResults/Info.plist
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
 schemes:
