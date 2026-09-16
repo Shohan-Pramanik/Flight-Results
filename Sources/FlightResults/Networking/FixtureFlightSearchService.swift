@@ -18,6 +18,12 @@ final class FixtureFlightSearchService: FlightSearchServicing {
             throw FlightSearchServiceError.invalidResponse
         }
         let data = try Data(contentsOf: url)
+
+        // Fixture data loads near-instantly, which would make the loading
+        // state (and its shimmer) invisible — this stand-in delay mimics a
+        // real network round trip so the loading UI is actually reachable.
+        try await Task.sleep(nanoseconds: 3_000_000_000)
+
         return try JSONDecoder().decode(FlightSearchResponse.self, from: data)
     }
 }
