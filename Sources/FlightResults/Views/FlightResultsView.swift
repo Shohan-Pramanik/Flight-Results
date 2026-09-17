@@ -24,8 +24,7 @@ struct FlightResultsView: View {
                         onLearnMore: { viewModel.tapLearnMore(url: $0) }
                     )
                 }
-                .padding(.horizontal)
-                .padding(.bottom)
+                .padding(.bottom, 16)
             }
         }
         .task {

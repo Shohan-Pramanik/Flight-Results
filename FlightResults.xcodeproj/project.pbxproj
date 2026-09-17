@@ -97,19 +97,19 @@
 		84CDE6EB0D5C0DEE861E5293 /* FlightOfferMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightOfferMapper.swift; sourceTree = "<group>"; };
 		854DBE2069F3DC76893A656A /* AirportCityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportCityTests.swift; sourceTree = "<group>"; };
 		854E21B10ACD1886B2376246 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
-		879D29D0B90893EF626BEBC8 /* FlightResultsUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FlightResultsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		879D29D0B90893EF626BEBC8 /* FlightResultsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlightResultsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D463C6C5E0DCBEABFF47B22 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		930FD3FE5534F7372B6886E1 /* FlightResultsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightResultsCoordinator.swift; sourceTree = "<group>"; };
 		983001244B10A2F59B0B8EEF /* Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmer.swift; sourceTree = "<group>"; };
 		9B5242FE3A9716CF88FCAE17 /* FlightResultsRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightResultsRoute.swift; sourceTree = "<group>"; };
-		9CA71CEDD357C6C1E992D3BB /* FlightResults.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = FlightResults.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CA71CEDD357C6C1E992D3BB /* FlightResults.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightResults.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1BA7086D823894EC44AA5C3 /* AirportCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportCity.swift; sourceTree = "<group>"; };
 		A1D70805E11E12934984139E /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = SOURCE_ROOT; };
 		A7EB52E83C98EBF3A5ACE692 /* FlightOfferFormattingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightOfferFormattingTests.swift; sourceTree = "<group>"; };
 		A9E4751AE122BE3216D1567A /* ErrorResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResultsView.swift; sourceTree = "<group>"; };
 		AAA45D73968E062AA3C0CAC7 /* FlightCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightCardView.swift; sourceTree = "<group>"; };
 		C41E395F8276BD26D46CFD26 /* FlightSearchLoadingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchLoadingHeaderView.swift; sourceTree = "<group>"; };
-		C5ECB379056094EC23FA4BC1 /* Secrets.xcconfig.example */ = {isa = PBXFileReference; path = Secrets.xcconfig.example; sourceTree = "<group>"; };
+		C5ECB379056094EC23FA4BC1 /* Secrets.xcconfig.example */ = {isa = PBXFileReference; lastKnownFileType = text; path = Secrets.xcconfig.example; sourceTree = "<group>"; };
 		CAAA4792E23C506E4C2416FF /* FlightOfferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightOfferTests.swift; sourceTree = "<group>"; };
 		D3C745376441B407B69FB367 /* SortFilterBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterBarView.swift; sourceTree = "<group>"; };
 		D5A66B059E322E8337075E0A /* ResultRowBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRowBuilderTests.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		E30317F702DFB47E2FCEB95C /* DatePriceStripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePriceStripView.swift; sourceTree = "<group>"; };
 		E398FF4FACA88200B930C956 /* FlightResultsCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightResultsCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		E3B30455E9572EDD8E675615 /* FlightOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightOffer.swift; sourceTree = "<group>"; };
-		E8971A323D9F5183A939C698 /* FlightResultsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FlightResultsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8971A323D9F5183A939C698 /* FlightResultsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlightResultsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFD3C71D5D7063C1682F9E2 /* FlightResultsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightResultsApp.swift; sourceTree = "<group>"; };
 		F0071911FA921009E247E5AC /* RawFlightModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawFlightModels.swift; sourceTree = "<group>"; };
 		F33AEE0ED97D7E6D2A24D10A /* SortOptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionTests.swift; sourceTree = "<group>"; };
@@ -180,13 +180,13 @@
 		85CEB2649F7691D63B39726A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5E03D6590755B209871704B3 /* FlightResultsView.swift */,
 				E30317F702DFB47E2FCEB95C /* DatePriceStripView.swift */,
 				72335D80D59A58AFBCE815F8 /* DiscountCarouselView.swift */,
 				02645FA20CCF9A9C76DB5AC7 /* EmptyResultsView.swift */,
 				A9E4751AE122BE3216D1567A /* ErrorResultsView.swift */,
 				189997A5EB9F60CBB1BB9121 /* FlightCardSkeletonView.swift */,
 				AAA45D73968E062AA3C0CAC7 /* FlightCardView.swift */,
-				5E03D6590755B209871704B3 /* FlightResultsView.swift */,
 				C41E395F8276BD26D46CFD26 /* FlightSearchLoadingHeaderView.swift */,
 				D89E44EDAA2FB18FDC68426E /* ResultRow.swift */,
 				FC9761DE0D18114F9C2D56F0 /* ResultsAreaView.swift */,

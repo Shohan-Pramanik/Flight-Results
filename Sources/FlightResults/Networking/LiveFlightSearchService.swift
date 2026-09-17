@@ -8,11 +8,11 @@ enum FlightSearchServiceError: Error, LocalizedError, Equatable {
     var errorDescription: String? {
         switch self {
         case .missingAPIKey:
-            return "Missing SerpApi API key. Add one to Config/Secrets.xcconfig."
+            return "Flight search isn't available right now. Please try again later."
         case .invalidResponse:
-            return "The server returned an unexpected response."
-        case .httpError(let statusCode):
-            return "Request failed with status code \(statusCode)."
+            return "Something went wrong. Please try later."
+        case .httpError:
+            return "We couldn't reach flight search right now. Please try again."
         }
     }
 }

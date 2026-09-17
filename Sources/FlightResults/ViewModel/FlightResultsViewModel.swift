@@ -47,8 +47,16 @@ final class FlightResultsViewModel: ObservableObject {
             allOffers = offers
             state = offers.isEmpty ? .empty : .success(offers)
         } catch {
-            state = .error(error.localizedDescription)
+            state = .error(Self.userFacingMessage(for: error))
         }
+    }
+
+    /// `FlightSearchServiceError` already carries user-friendly copy via
+    /// `LocalizedError`; anything else (decoding failures, `URLError`, etc.)
+    /// gets a generic message instead of leaking a system-level description.
+    private static func userFacingMessage(for error: Error) -> String {
+        (error as? FlightSearchServiceError)?.errorDescription
+            ?? "We couldn't load flight results. Please check your connection and try again."
     }
 
     func tapLearnMore(url: URL) {

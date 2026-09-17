@@ -24,6 +24,7 @@ struct DiscountCarouselView: View {
                     card(for: promo)
                 }
             }
+            .padding(.horizontal, 16)
         }
     }
 

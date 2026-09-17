@@ -16,12 +16,14 @@ struct FlightResultsApp: App {
         // instead of hitting the network — no live API calls, no key
         // required. Swap back to LiveFlightSearchService once a real key
         // is wired up via Config/Secrets.xcconfig.
-        #if DEBUG
-        let service: FlightSearchServicing = FixtureFlightSearchService()
-        #else
-        let service: FlightSearchServicing = LiveFlightSearchService()
-        #endif
+//        #if DEBUG
+//        let service: FlightSearchServicing = FixtureFlightSearchService()
+//        #else
+//        let service: FlightSearchServicing = LiveFlightSearchService()
+//        #endif
 
+        let service: FlightSearchServicing = LiveFlightSearchService()
+        
         let viewModel = FlightResultsViewModel(request: request, service: service)
         _coordinator = StateObject(wrappedValue: FlightResultsCoordinator(viewModel: viewModel))
     }

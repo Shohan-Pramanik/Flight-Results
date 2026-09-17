@@ -21,12 +21,14 @@ struct ResultsAreaView: View {
                     FlightCardSkeletonView()
                 }
             }
+            .padding(.horizontal, 16)
         case .success(let offers):
             LazyVStack(spacing: 12) {
                 ForEach(ResultRowBuilder.rows(for: offers)) { row in
                     switch row {
                     case .flight(let offer):
                         FlightCardView(offer: offer)
+                            .padding(.horizontal, 16)
                             .onTapGesture { onSelect(offer) }
                     case .promo:
                         DiscountCarouselView(onLearnMore: onLearnMore)
@@ -35,8 +37,10 @@ struct ResultsAreaView: View {
             }
         case .empty:
             EmptyResultsView()
+                .padding(.horizontal, 16)
         case .error(let message):
             ErrorResultsView(message: message, onRetry: onRetry)
+                .padding(.horizontal, 16)
         }
     }
 }
