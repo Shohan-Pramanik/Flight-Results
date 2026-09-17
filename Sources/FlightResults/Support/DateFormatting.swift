@@ -23,7 +23,7 @@ enum DateFormatting {
 
     static let flightTime: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a"
+        formatter.dateFormat = "HH:mm"
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.timeZone = TimeZone(identifier: "UTC")
         return formatter

@@ -45,7 +45,7 @@ struct FlightCardView: View {
                     .lineSpacing(6)
                     .multilineTextAlignment(.trailing)
             }
-            .foregroundStyle(.orange)
+            .foregroundStyle(.secondary)
         }
     }
 
@@ -84,17 +84,8 @@ struct FlightCardView: View {
                 Spacer()
 
                 VStack(alignment: .trailing, spacing: 2) {
-                    HStack(alignment: .top, spacing: 2) {
-                        Text(DateFormatting.flightTime.string(from: offer.arrivalTime))
-                            .font(.custom("Gilroy-Bold", size: 16))
-                            .lineSpacing(8)
-                        if offer.arrivalDayOffset > 0 {
-                            Text("+\(offer.arrivalDayOffset)Day")
-                                .font(.caption2)
-                                .fontWeight(.bold)
-                                .foregroundStyle(.red)
-                        }
-                    }
+                    arrivalTimeText
+                        .lineSpacing(8)
                     Text(offer.destinationCode)
                         .font(.custom("AvenirNext-Medium", size: 12))
                         .lineSpacing(6)
@@ -111,6 +102,19 @@ struct FlightCardView: View {
             }
             .frame(height: 1)
         }
+    }
+
+    /// Renders the "+1Day" marker as a true superscript — raised above the
+    /// baseline via `baselineOffset` rather than just top-aligned next to
+    /// the time, which only lined up the tops, not a proper exponent look.
+    private var arrivalTimeText: Text {
+        let time = Text(DateFormatting.flightTime.string(from: offer.arrivalTime))
+            .font(.custom("Gilroy-Bold", size: 16))
+        guard offer.arrivalDayOffset > 0 else { return time }
+        return time + Text("+\(offer.arrivalDayOffset)Day")
+            .font(.system(size: 9, weight: .bold))
+            .baselineOffset(8)
+            .foregroundColor(.red)
     }
 
     /// A dot-line-dot flight path — one filled dot per actual layover, so

@@ -36,7 +36,7 @@ struct SortFilterBarView: View {
                 pill(label: "Filter", icon: .asset("filterIcon"), background: Color("SelectedDateGold"))
             }
         }
-        .padding(.leading, 16)
+        .padding(.horizontal, 16)
     }
 
     private var sortMenu: some View {

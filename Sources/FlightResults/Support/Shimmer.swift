@@ -6,6 +6,7 @@ import SwiftUI
 /// fit for skeleton cards.
 private struct ShimmerModifier: ViewModifier {
     @State private var phase: CGFloat = -1
+    var cornerRadius: CGFloat
 
     func body(content: Content) -> some View {
         content
@@ -18,9 +19,16 @@ private struct ShimmerModifier: ViewModifier {
                     )
                     .frame(width: geometry.size.width)
                     .offset(x: phase * geometry.size.width * 2)
+                    // Sized off the same `geometry` the sweep itself uses,
+                    // so the highlight is guaranteed to span the card's
+                    // actual full width. Using `content` as a `.mask` here
+                    // instead re-lays it out as a separate instance inside
+                    // this overlay, which isn't guaranteed the same width
+                    // as the real card — clipping to rounded corners this
+                    // way keeps both the full-width sweep and the rounding.
+                    .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                 }
             )
-            .clipped()
             .onAppear {
                 withAnimation(.linear(duration: 1.2).repeatForever(autoreverses: false)) {
                     phase = 1
@@ -30,7 +38,7 @@ private struct ShimmerModifier: ViewModifier {
 }
 
 extension View {
-    func shimmer() -> some View {
-        modifier(ShimmerModifier())
+    func shimmer(cornerRadius: CGFloat = 0) -> some View {
+        modifier(ShimmerModifier(cornerRadius: cornerRadius))
     }
 }
