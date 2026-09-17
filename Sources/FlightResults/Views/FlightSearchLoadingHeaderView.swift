@@ -32,5 +32,6 @@ struct FlightSearchLoadingHeaderView: View {
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
         }
+        .accessibilityIdentifier("loadingHeader")
     }
 }

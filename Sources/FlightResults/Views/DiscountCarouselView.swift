@@ -49,6 +49,7 @@ struct DiscountCarouselView: View {
                             .frame(width: 8, height: 8)
                     }
                 }
+                .accessibilityIdentifier("learnMoreButton")
             }
             .padding(4)
         }

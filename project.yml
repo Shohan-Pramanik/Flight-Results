@@ -46,17 +46,33 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
     dependencies:
       - target: FlightResults
+  FlightResultsUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: Tests/FlightResultsUITests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shohanpramanik.FlightResultsUITests
+        SWIFT_VERSION: 5.0
+        TARGETED_DEVICE_FAMILY: "1,2"
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: FlightResults
+    dependencies:
+      - target: FlightResults
 schemes:
   FlightResults:
     build:
       targets:
         FlightResults: all
         FlightResultsTests: [test]
+        FlightResultsUITests: [test]
     run:
       config: Debug
     test:
       config: Debug
       targets:
         - FlightResultsTests
+        - FlightResultsUITests
     archive:
       config: Release

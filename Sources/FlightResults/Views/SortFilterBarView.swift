@@ -24,6 +24,7 @@ struct SortFilterBarView: View {
                     foreground: .white
                 )
             }
+            .accessibilityIdentifier("sortButton")
             .overlay(alignment: .topLeading) {
                 if isSortMenuOpen {
                     sortMenu.offset(y: 40)
@@ -35,6 +36,7 @@ struct SortFilterBarView: View {
             Button(action: onTapFilter) {
                 pill(label: "Filter", icon: .asset("filterIcon"), background: Color("SelectedDateGold"))
             }
+            .accessibilityIdentifier("filterButton")
         }
         .padding(.horizontal, 16)
     }
@@ -68,6 +70,7 @@ struct SortFilterBarView: View {
                         .fill(option == selectedSort ? Color("AccentColor").opacity(0.1) : Color.clear)
                 )
         }
+        .accessibilityIdentifier("sortOption.\(option.label)")
     }
 
     private enum PillIcon {

@@ -15,6 +15,7 @@ struct ErrorResultsView: View {
                 .foregroundStyle(.white.opacity(0.7))
             Button("Retry", action: onRetry)
                 .buttonStyle(.borderedProminent)
+                .accessibilityIdentifier("retryButton")
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 48)
