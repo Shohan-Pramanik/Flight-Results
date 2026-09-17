@@ -31,6 +31,6 @@ struct FlightResultsView: View {
         .task {
             await viewModel.load()
         }
-        .background(Color.accentColor.ignoresSafeArea())
+        .background(Color("AccentColor").ignoresSafeArea())
     }
 }

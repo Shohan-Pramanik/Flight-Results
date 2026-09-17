@@ -15,12 +15,31 @@ final class FlightResultsViewModel: ObservableObject {
     private let service: FlightSearchServicing
     private var allOffers: [FlightOffer] = []
 
+    /// `FlightResultsView.task` calls `load()` every time the view appears,
+    /// including when it's just been re-exposed after a `NavigationStack`
+    /// pop (e.g. returning from `WebLinkView`) — not only on first launch.
+    /// This guard makes `load()` a one-shot: once a fetch has started, later
+    /// calls are no-ops, so navigating away and back never re-fetches or
+    /// re-shows the loading state. `retry()` bypasses the guard on purpose,
+    /// since it's only ever invoked by an explicit user tap.
+    private var hasLoaded = false
+
     init(request: FlightSearchRequest, service: FlightSearchServicing) {
         self.request = request
         self.service = service
     }
 
     func load() async {
+        guard !hasLoaded else { return }
+        hasLoaded = true
+        await performSearch()
+    }
+
+    func retry() async {
+        await performSearch()
+    }
+
+    private func performSearch() async {
         state = .loading
         do {
             let response = try await service.search(request)
@@ -30,10 +49,6 @@ final class FlightResultsViewModel: ObservableObject {
         } catch {
             state = .error(error.localizedDescription)
         }
-    }
-
-    func retry() async {
-        await load()
     }
 
     func tapLearnMore(url: URL) {

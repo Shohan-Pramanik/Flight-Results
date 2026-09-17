@@ -28,7 +28,6 @@ struct FlightSearchLoadingHeaderView: View {
             Text("Hang tight! We're finding the best flight options for you.")
                 .font(.custom("Gilroy-SemiBold", size: 20))
                 .lineSpacing(10)
-                .tracking(0)
                 .foregroundStyle(.white)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)

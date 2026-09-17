@@ -20,7 +20,6 @@ struct RouteHeaderView: View {
                 Text("\(originCity) - \(destinationCity)")
                     .font(.custom("Gilroy-Bold", size: 20))
                     .lineSpacing(10)
-                    .tracking(0)
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.white)
 
@@ -29,7 +28,6 @@ struct RouteHeaderView: View {
                     + Text(" 01 | One Way"))
                     .font(.custom("AvenirNext-Medium", size: 12))
                     .lineSpacing(6)
-                    .tracking(0)
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.white.opacity(0.7))
             }

@@ -18,7 +18,7 @@ struct SortFilterBarView: View {
             } label: {
                 pill(
                     label: selectedSort.label,
-                    systemImage: isSortMenuOpen ? "chevron.up" : "chevron.down",
+                    icon: .system(isSortMenuOpen ? "chevron.up" : "chevron.down"),
                     background: .clear,
                     border: .white,
                     foreground: .white
@@ -26,17 +26,17 @@ struct SortFilterBarView: View {
             }
             .overlay(alignment: .topLeading) {
                 if isSortMenuOpen {
-                    sortMenu.offset(y: 48)
+                    sortMenu.offset(y: 40)
                 }
             }
 
             Spacer()
 
             Button(action: onTapFilter) {
-                pill(label: "Filter", systemImage: "slider.horizontal.3", background: Color("SelectedDateGold"))
+                pill(label: "Filter", icon: .asset("filterIcon"), background: Color("SelectedDateGold"))
             }
         }
-        .padding(16)
+        .padding(.leading, 16)
     }
 
     private var sortMenu: some View {
@@ -59,33 +59,43 @@ struct SortFilterBarView: View {
             Text(option.label)
                 .font(.custom("AvenirNext-Bold", size: 12))
                 .lineSpacing(6)
-                .tracking(0)
-                .foregroundStyle(Color.accentColor)
+                .foregroundStyle(Color("AccentColor"))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(option == selectedSort ? Color.accentColor.opacity(0.1) : Color.clear)
+                        .fill(option == selectedSort ? Color("AccentColor").opacity(0.1) : Color.clear)
                 )
         }
     }
 
+    private enum PillIcon {
+        case system(String)
+        case asset(String)
+    }
+
     private func pill(
         label: String,
-        systemImage: String,
+        icon: PillIcon,
         background: Color,
         border: Color? = nil,
-        foreground: Color = Color.accentColor
+        foreground: Color = Color("AccentColor")
     ) -> some View {
         HStack(spacing: 4) {
             Text(label)
                 .font(.custom("Gilroy-Bold", size: 12))
                 .lineSpacing(2)
-                .tracking(0)
                 .multilineTextAlignment(.center)
-            Image(systemName: systemImage)
-                .font(.system(size: 12, weight: .bold))
+            switch icon {
+            case .system(let name):
+                Image(systemName: name)
+                    .font(.system(size: 12, weight: .bold))
+            case .asset(let name):
+                Image(name)
+                    .resizable()
+                    .frame(width: 16, height: 16)
+            }
         }
         .foregroundStyle(foreground)
         .padding(.horizontal, 12)

@@ -31,8 +31,8 @@ struct FlightCardView: View {
             .frame(width: 24, height: 24)
 
             Text(offer.airline)
-                .font(.subheadline)
-                .fontWeight(.medium)
+                .font(.custom("AvenirNext-Regular", size: 14))
+                .lineSpacing(6)
 
             Spacer()
 
@@ -41,9 +41,10 @@ struct FlightCardView: View {
                     .resizable()
                     .frame(width: 14, height: 14)
                 Text("Get Points")
+                    .font(.custom("AvenirNext-Regular", size: 12))
+                    .lineSpacing(6)
+                    .multilineTextAlignment(.trailing)
             }
-            .font(.caption2)
-            .fontWeight(.semibold)
             .foregroundStyle(.orange)
         }
     }
@@ -53,9 +54,12 @@ struct FlightCardView: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(DateFormatting.flightTime.string(from: offer.departureTime))
-                        .font(.headline)
+                        .font(.custom("Gilroy-Bold", size: 16))
+                        .lineSpacing(8)
+                        
                     Text(offer.originCode)
-                        .font(.caption)
+                        .font(.custom("AvenirNext-Medium", size: 12))
+                        .lineSpacing(6)
                         .foregroundStyle(.secondary)
                 }
 
@@ -63,13 +67,16 @@ struct FlightCardView: View {
 
                 VStack(spacing: 4) {
                     Text(FlightOfferFormatting.duration(minutes: offer.totalDurationMinutes))
-                        .font(.caption2)
+                        .font(.custom("AvenirNext-Regular", size: 12))
+                        .lineSpacing(6)
+                        .multilineTextAlignment(.center)
                         .foregroundStyle(.secondary)
                     routeVisual
                         .frame(width: 100)
                     Text(offer.stopsLabel)
-                        .font(.caption2)
-                        .fontWeight(.medium)
+                        .font(.custom("AvenirNext-Regular", size: 12))
+                        .lineSpacing(6)
+                        .multilineTextAlignment(.center)
                         .foregroundStyle(.secondary)
                 }
                 .frame(maxWidth: .infinity)
@@ -79,7 +86,8 @@ struct FlightCardView: View {
                 VStack(alignment: .trailing, spacing: 2) {
                     HStack(alignment: .top, spacing: 2) {
                         Text(DateFormatting.flightTime.string(from: offer.arrivalTime))
-                            .font(.headline)
+                            .font(.custom("Gilroy-Bold", size: 16))
+                            .lineSpacing(8)
                         if offer.arrivalDayOffset > 0 {
                             Text("+\(offer.arrivalDayOffset)Day")
                                 .font(.caption2)
@@ -88,7 +96,8 @@ struct FlightCardView: View {
                         }
                     }
                     Text(offer.destinationCode)
-                        .font(.caption)
+                        .font(.custom("AvenirNext-Medium", size: 12))
+                        .lineSpacing(6)
                         .foregroundStyle(.secondary)
                 }
             }
@@ -143,15 +152,21 @@ struct FlightCardView: View {
             Spacer()
             VStack(alignment: .trailing, spacing: 2) {
                 Text("Starting from")
-                    .font(.caption2)
+                    .font(.custom("AvenirNext-Regular", size: 12))
+                    .lineSpacing(6)
+                    .multilineTextAlignment(.trailing)
                     .foregroundStyle(.secondary)
-                (Text("\(offer.currencyCode) ")
-                    .foregroundColor(.secondary)
-                    .fontWeight(.regular)
-                    + Text(FlightOfferFormatting.amount(offer.price))
-                    .foregroundColor(Color.accentColor)
-                    .fontWeight(.bold))
-                    .font(.title3)
+                HStack(alignment: .lastTextBaseline, spacing: 4) {
+                    Text(offer.currencyCode)
+                        .font(.custom("AvenirNext-Medium", size: 12))
+                        .lineSpacing(6)
+                        .multilineTextAlignment(.trailing)
+                        .foregroundStyle(.secondary)
+                    Text(FlightOfferFormatting.amount(offer.price))
+                        .font(.custom("Gilroy-Bold", size: 16))
+                        .lineSpacing(8)
+                        .foregroundStyle(Color("AccentColor"))
+                }
             }
         }
     }
