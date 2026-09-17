@@ -228,11 +228,11 @@
 		99C582BC459830FF42F53702 = {
 			isa = PBXGroup;
 			children = (
-				4A39F8E66559C452461D7543 /* Assets.xcassets */,
 				6FFBFBCBBCB32F26775AAD96 /* Fixtures */,
 				A1D70805E11E12934984139E /* Fonts */,
 				8E165AA9162C1C342EC4F21D /* Config */,
 				E23A3EC4EFF06F6C59E043DB /* FlightResults */,
+				4A39F8E66559C452461D7543 /* Assets.xcassets */,
 				92491620B7C3764A10585D74 /* FlightResultsTests */,
 				E88D4B8D3596817E38395300 /* FlightResultsUITests */,
 				4062A8A6A8DA4013D966FC05 /* Products */,
