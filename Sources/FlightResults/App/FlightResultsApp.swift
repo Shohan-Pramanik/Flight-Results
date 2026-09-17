@@ -14,9 +14,8 @@ struct FlightResultsApp: App {
 
         // Reads the bundled fixture (a real captured SerpApi response)
         // instead of hitting the network — no live API calls, no key
-        // required. Swap back to LiveFlightSearchService (optionally
-        // wrapped in CachingFlightSearchService) once a real key is wired
-        // up via Config/Secrets.xcconfig.
+        // required. Swap back to LiveFlightSearchService once a real key
+        // is wired up via Config/Secrets.xcconfig.
         #if DEBUG
         let service: FlightSearchServicing = FixtureFlightSearchService()
         #else

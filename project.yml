@@ -33,14 +33,30 @@ targets:
         INFOPLIST_FILE: Sources/FlightResults/Info.plist
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
+  FlightResultsTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests/FlightResultsTests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shohanpramanik.FlightResultsTests
+        SWIFT_VERSION: 5.0
+        TARGETED_DEVICE_FAMILY: "1,2"
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: FlightResults
 schemes:
   FlightResults:
     build:
       targets:
         FlightResults: all
+        FlightResultsTests: [test]
     run:
       config: Debug
     test:
       config: Debug
+      targets:
+        - FlightResultsTests
     archive:
       config: Release
