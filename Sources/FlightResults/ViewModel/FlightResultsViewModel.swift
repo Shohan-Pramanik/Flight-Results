@@ -15,6 +15,11 @@ final class FlightResultsViewModel: ObservableObject {
     private let service: FlightSearchServicing
     private var allOffers: [FlightOffer] = []
 
+    /// Keeps the loading skeleton on screen for at least this long, so a
+    /// fast response (e.g. a warm connection) doesn't flash past it.
+    /// Defaults to 0 so unit tests stay instant; production wiring passes 2s.
+    private let minimumLoadingDurationNanoseconds: UInt64
+
     /// `FlightResultsView.task` calls `load()` every time the view appears,
     /// including when it's just been re-exposed after a `NavigationStack`
     /// pop (e.g. returning from `WebLinkView`) — not only on first launch.
@@ -24,9 +29,14 @@ final class FlightResultsViewModel: ObservableObject {
     /// since it's only ever invoked by an explicit user tap.
     private var hasLoaded = false
 
-    init(request: FlightSearchRequest, service: FlightSearchServicing) {
+    init(
+        request: FlightSearchRequest,
+        service: FlightSearchServicing,
+        minimumLoadingDurationNanoseconds: UInt64 = 0
+    ) {
         self.request = request
         self.service = service
+        self.minimumLoadingDurationNanoseconds = minimumLoadingDurationNanoseconds
     }
 
     func load() async {
@@ -42,8 +52,13 @@ final class FlightResultsViewModel: ObservableObject {
     private func performSearch() async {
         state = .loading
         do {
-            let response = try await service.search(request)
-            let offers = FlightOfferMapper.map(response, request: request)
+            async let response = service.search(request)
+            async let minimumDelay: ()? = try? Task.sleep(nanoseconds: minimumLoadingDurationNanoseconds)
+
+            let result = try await response
+            _ = await minimumDelay
+
+            let offers = FlightOfferMapper.map(result, request: request)
             allOffers = offers
             state = offers.isEmpty ? .empty : .success(offers)
         } catch {

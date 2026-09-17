@@ -24,7 +24,11 @@ struct FlightResultsApp: App {
 
         let service: FlightSearchServicing = LiveFlightSearchService()
         
-        let viewModel = FlightResultsViewModel(request: request, service: service)
+        let viewModel = FlightResultsViewModel(
+            request: request,
+            service: service,
+            minimumLoadingDurationNanoseconds: 2_000_000_000
+        )
         _coordinator = StateObject(wrappedValue: FlightResultsCoordinator(viewModel: viewModel))
     }
 
