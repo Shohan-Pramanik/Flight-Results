@@ -1,6 +1,6 @@
 import Foundation
 
-enum FlightSearchServiceError: Error, LocalizedError {
+enum FlightSearchServiceError: Error, LocalizedError, Equatable {
     case missingAPIKey
     case invalidResponse
     case httpError(statusCode: Int)

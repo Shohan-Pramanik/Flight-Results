@@ -14,6 +14,8 @@ struct FlightCardView: View {
         }
         .padding(16)
         .background(RoundedRectangle(cornerRadius: 8).fill(Color.white))
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("flightCard")
     }
 
     private var header: some View {

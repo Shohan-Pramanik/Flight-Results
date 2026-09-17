@@ -12,5 +12,6 @@ struct EmptyResultsView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 48)
+        .accessibilityIdentifier("emptyResultsView")
     }
 }
